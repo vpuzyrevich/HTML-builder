@@ -26,12 +26,6 @@ let dataArr = [];
       });
     });
   };
-
-// fs.promises.readdir(path.join(__dirname, 'styles'), { withFileTypes: true })
-//   .then(file => {
-//     fs.promises.unlink(path.join(__dirname, 'project-dist',  'style.css'));
-//   });
-
   const copyStyles = () => {
     fs.promises.readdir(path.join(__dirname, 'styles'), { withFileTypes: true })
       .then(filenames => {
@@ -49,23 +43,6 @@ let dataArr = [];
         }
       });
   };
-
-// function deleteAssets () {
-//    await Promise.resolve().then(function () {
-//     fs.promises.readdir(path.join(__dirname, 'project-dist', 'assets'), { withFileTypes: true })
-//     .then(filenames => {
-//       for (let filename of filenames) {
-//         if(filename.isDirectory() === true){
-//           fs.promises.rm(path.join(__dirname, 'project-dist',  'assets', filename.name), { recursive: true, force: true });
-//         } else {
-//           fs.promises.unlink(path.join(__dirname, 'project-dist',  'assets', filename.name));
-//         }
-//       }});
-//     });
-    
-// };
-
-//   deleteAssets();
   replaceTemplate();
   copyStyles();
 
@@ -76,7 +53,6 @@ let dataArr = [];
       .then(async (filenames) => {
         for (let filename of filenames) { 
           if(filename.isDirectory() === true){
-            // await fs.promises.mkdir(path.join(__dirname, 'project-dist', 'assets', filename.name), { recursive: true });
             copyAssets(filename.name);
           } else {
             fs.promises.copyFile(path.join(__dirname, 'assets', folderName, filename.name), path.join(__dirname, 'project-dist', 'assets', folderName, filename.name));
